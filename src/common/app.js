@@ -1,4 +1,4 @@
-const apiKey = '3bd1590d6c699874f3984157bc0a65a1'; // Replace with your actual OpenWeatherMap API key
+let apiKey;
 const weatherApiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -6,13 +6,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const locationInput = document.getElementById('location-input');
     const weatherDisplay = document.getElementById('weather-display');
 
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const location = locationInput.value;
-        console.log(`Form submitted with location: ${location}`); // Debugging log
-        fetchWeather(location);
+    fetchApiKey().then(() => {
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const location = locationInput.value;
+            console.log(`Form submitted with location: ${location}`); // Debugging log
+            fetchWeather(location);
+        });
     });
 });
+
+function fetchApiKey() {
+    return fetch('/api-key')
+        .then(response => response.json())
+        .then(data => {
+            apiKey = data.apiKey;
+        })
+        .catch(error => {
+            console.error('Error fetching API key:', error);
+            alert('Could not fetch API key. Please try again.');
+        });
+}
 
 function fetchWeather(location) {
     const url = `${weatherApiUrl}?q=${location}&appid=${apiKey}&units=metric`;
