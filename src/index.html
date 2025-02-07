@@ -4,17 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/common/styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Weather App</h1>
-        <form id="location-form">
-            <input type="text" id="location-input" placeholder="Enter location">
-            <button type="submit" id="getWeather">Get Weather</button>
-        </form>
-        <div id="weather-display"></div>
-    </div>
-    <script src="app.js"></script>
+    <table>
+        <tr>
+            <td width="50%">
+                <div class="container" width="50%">
+                    <div>
+                        <h1>Weather App</h1>
+                        <form id="location-form" width="50%">
+                            <input type="text" id="location-input" placeholder="Enter location">
+                            &emsp;
+                            <button type="submit" id="getWeather">Get Weather</button>
+                        </form>
+                    </div>
+                    <div><hr width="100%" color="green" size="25px" /></div>
+                    <div id="weather-display"></div>
+                </div>
+                <script src="/common/app.js"></script>
+            </td>
+            <td width="50%">
+                
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
